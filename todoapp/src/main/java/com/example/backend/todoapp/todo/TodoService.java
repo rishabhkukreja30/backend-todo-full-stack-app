@@ -30,4 +30,13 @@ public class TodoService {
         Todo deletedToodo = todos.stream().filter(todo -> todo.getId() == id).findFirst().get();
         todos.remove(deletedToodo);
     }
+
+    public void updateTodo(Todo todo) {
+        deleteById(todo.getId());
+        todos.add(todo);
+    }
+
+    public void addTodo(Todo todo) {
+        todos.add(todo);
+    }
 }

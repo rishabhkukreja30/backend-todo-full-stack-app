@@ -1,10 +1,7 @@
 package com.example.backend.todoapp.todo;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +29,19 @@ public class TodoController {
         todoService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping(path = "/users/{username}/todos/{id}")
+    public Todo updateTodo(@PathVariable String username, @PathVariable int id, @RequestBody Todo todo) {
+        todoService.updateTodo(todo);
+        return todo;
+    }
+
+    @PostMapping(path = "/users/{username}/todos")
+    public Todo createeTodo(@PathVariable String username, @RequestBody Todo todo) {
+        todoService.addTodo(todo);
+        return todo;
+    }
+
 
 
 }
