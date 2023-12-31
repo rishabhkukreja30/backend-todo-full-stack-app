@@ -20,4 +20,14 @@ public class TodoService {
     public List<Todo> findTodosByUsername(String username) {
         return todos.stream().filter(todo -> todo.getUsername().equals(username)).toList();
     }
+
+    public Todo findTodo(String username, int id) {
+        List<Todo> todoList = findTodosByUsername(username);
+        return todoList.stream().filter(todo -> todo.getId() == id).findFirst().get();
+    }
+
+    public void deleteById(int id) {
+        Todo deletedToodo = todos.stream().filter(todo -> todo.getId() == id).findFirst().get();
+        todos.remove(deletedToodo);
+    }
 }
